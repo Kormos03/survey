@@ -1,24 +1,34 @@
+
 import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
-
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
-
-setupCounter(document.querySelector('#counter'))
+function buttonclick()
+{
+  let name = document.getElementById('name').value;
+  let mobile = document.getElementById('mobile').value;
+  let age = document.getElementById('age').value;
+  let color = document.getElementById('color').value;
+  if(!name.includes(' '))
+  {
+    document.getElementById('error').textContent = 'The name must include a space';
+  }
+  else if(!mobile.includes('+'))
+  {
+    document.getElementById('error').textContent ='The mobile number must include a +';
+  }
+  else if(age < 18)
+  {
+    document.getElementById('error').textContent = 'You have to be older than 18';
+  }
+  else if(color == '' || color == ' ')
+  {
+    document.getElementById('error').textContent = 'Write any color';
+  }
+  else
+  {
+    document.getElementById('error').innerHTML = '<p class="text-success">Successful</p>';
+  }
+}
+function init()
+{
+  document.getElementById('submit').addEventListener('click', buttonclick);
+}
+document.addEventListener('DOMContentLoaded', init);
